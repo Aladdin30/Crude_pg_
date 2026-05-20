@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
+from app.config.settings import Settings
+settings=Settings()
 
-#db_url = "postgresql://postgres:1234@localhost:5432/book_db"
-db_url = "postgresql://postgres:password@host.docker.internal:5432/book_db"
-engine= create_engine(db_url)
+engine= create_engine(settings.DATABASE_URL)
 SessionLocal = sessionmaker(autoflush=False,
                             autocommit=False,
                             bind=engine)
